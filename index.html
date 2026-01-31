@@ -19,12 +19,61 @@
 
     .card {
       background: white;
-      padding: 35px 45px;
+      padding: 35px 45px 45px;
       border-radius: 25px;
       box-shadow: 0 15px 35px rgba(0,0,0,0.2);
       max-width: 380px;
       position: relative;
       z-index: 2;
+    }
+
+    .teddy {
+      width: 120px;
+      margin-bottom: 15px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .cry {
+      filter: grayscale(30%);
+      animation: shake 0.4s infinite;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-3px); }
+      50% { transform: translateX(3px); }
+      75% { transform: translateX(-3px); }
+      100% { transform: translateX(0); }
+    }
+
+    .hug {
+      animation: hug 1.2s infinite;
+    }
+
+    @keyframes hug {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .blush::after {
+      content: '💗';
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      font-size: 24px;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.7; }
+    }
+      50% { transform: translateY(-10px); }
     }
 
     h1 {
@@ -97,6 +146,7 @@
   </audio>
 
   <div class="card">
+      <img src="https://i.imgur.com/8Km9tLL.png" alt="Chibi Teddy Bear" class="teddy" id="teddy">
     <h1>Antonia 💕</h1>
     <p id="message">Will you be my Valentine? 🥺💘</p>
 
@@ -108,6 +158,7 @@
 
   <script>
     const noBtn = document.getElementById('noBtn');
+    const teddy = document.getElementById('teddy');
     const yesBtn = document.getElementById('yesBtn');
     const message = document.getElementById('message');
     const buttons = document.getElementById('buttons');
@@ -133,6 +184,8 @@
     noBtn.addEventListener('click', () => {
       clicks++;
       scale -= 0.2;
+      teddy.classList.remove('hug');
+      teddy.classList.add('cry');
 
       if (clicks < sadMessages.length) {
         message.textContent = sadMessages[clicks - 1];
@@ -146,7 +199,10 @@
     yesBtn.addEventListener('click', () => {
       message.innerHTML = 'YES!! 💕🥰<br>I can’t wait to spend Valentine’s Day with you, Antonia!';
       buttons.style.display = 'none';
+      teddy.classList.remove('cry');
+      teddy.classList.add('hug', 'blush');
       startHearts();
+    });
     });
 
     function startHearts() {
@@ -165,4 +221,3 @@
   </script>
 </body>
 </html>
-
