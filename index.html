@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antonia, Will You Be My Valentine? 💖</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+    }
+
+    .card {
+      background: white;
+      padding: 35px 45px;
+      border-radius: 25px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      max-width: 380px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #ff4d6d;
+    }
+
+    p {
+      margin-bottom: 25px;
+      font-size: 18px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    button {
+      padding: 14px 28px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    #yesBtn {
+      background-color: #ff4d6d;
+      color: white;
+    }
+
+    #yesBtn:hover {
+      transform: scale(1.15);
+    }
+
+    #noBtn {
+      background-color: #ddd;
+      position: relative;
+    }
+
+    .sad {
+      color: #555;
+      font-size: 18px;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: floatUp 4s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-120vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="music" autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2022/10/26/audio_52b5f8e0c8.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="card">
+    <h1>Antonia 💕</h1>
+    <p id="message">Will you be my Valentine? 🥺💘</p>
+
+    <div class="buttons" id="buttons">
+      <button id="yesBtn">Yes 💖</button>
+      <button id="noBtn">No 😅</button>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const message = document.getElementById('message');
+    const buttons = document.getElementById('buttons');
+
+    let scale = 1;
+    let clicks = 0;
+
+    const sadMessages = [
+      "Wait… are you sure? 😢",
+      "This kinda hurts… 🥺",
+      "I was really hoping you'd say yes… 💔",
+      "Oh… okay 😔",
+    ];
+
+    noBtn.addEventListener('mouseover', () => {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.position = 'absolute';
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+    });
+
+    noBtn.addEventListener('click', () => {
+      clicks++;
+      scale -= 0.2;
+
+      if (clicks < sadMessages.length) {
+        message.textContent = sadMessages[clicks - 1];
+        noBtn.style.transform = `scale(${Math.max(scale, 0.3)})`;
+      } else {
+        buttons.style.display = 'none';
+        message.innerHTML = '<span class="sad">I understand… 😔<br>I’m really sorry for asking.</span>';
+      }
+    });
+
+    yesBtn.addEventListener('click', () => {
+      message.innerHTML = 'YES!! 💕🥰<br>I can’t wait to spend Valentine’s Day with you, Antonia!';
+      buttons.style.display = 'none';
+      startHearts();
+    });
+
+    function startHearts() {
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.textContent = '💖';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.bottom = '-20px';
+        heart.style.fontSize = 16 + Math.random() * 20 + 'px';
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 4000);
+      }, 250);
+    }
+  </script>
+</body>
+</html>
+
