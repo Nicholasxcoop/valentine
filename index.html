@@ -144,7 +144,7 @@
     });
 
     yesBtn.addEventListener('click', () => {
-      message.innerHTML = 'YES!! 💕🥰<br>I can’t wait to spend Valentine’s Day with you, Antonia!';
+      message.innerHTML = 'YES!! 💕🥰<br>I can’t wait to spend Valentine’s Day with you, Antonia! <br> I love ';
       buttons.style.display = 'none';
       startHearts();
     });
@@ -154,9 +154,9 @@
         const heart = document.createElement('div');
         heart.className = 'heart';
         heart.textContent = '💖';
-        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.left = Math.random() * 10 + 'vw';
         heart.style.bottom = '-20px';
-        heart.style.fontSize = 16 + Math.random() * 20 + 'px';
+        heart.style.fontSize = 16 + Math.random() * 17 + 'px';
         document.body.appendChild(heart);
 
         setTimeout(() => heart.remove(), 4000);
