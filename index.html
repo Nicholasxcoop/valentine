@@ -93,12 +93,12 @@
 <body>
 
   <audio id="music" autoplay loop>
-    <source src="https://cdn.pixabay.com/audio/2022/10/26/audio_52b5f8e0c8.mp3" type="audio/mpeg">
+    <source src="https://pixabay.com/music/modern-classical-soft-piano-music-478252/.mp3" type="audio/mpeg">
   </audio>
 
   <div class="card">
     <h1>Antonia 💕</h1>
-    <p id="message">Will you be my Valentine? 🥺💘</p>
+    <p id="message">Will you be my Valentine? <br> For a date you shall remember? 🥺💘</p>
 
     <div class="buttons" id="buttons">
       <button id="yesBtn">Yes 💖</button>
@@ -144,7 +144,7 @@
     });
 
     yesBtn.addEventListener('click', () => {
-      message.innerHTML = 'YES!! 💕🥰<br>I can’t wait to spend Valentine’s Day with you, Antonia! <br> I love ';
+      message.innerHTML = 'YES!! 💕🥰<br>I can’t wait to spend Valentine’s Day with you, Antonia! <br> I love you very muchh';
       buttons.style.display = 'none';
       startHearts();
     });
@@ -156,7 +156,7 @@
         heart.textContent = '💖';
         heart.style.left = Math.random() * 10 + 'vw';
         heart.style.bottom = '-20px';
-        heart.style.fontSize = 16 + Math.random() * 17 + 'px';
+        heart.style.fontSize = 16 + Math.random() * 12 + 'px';
         document.body.appendChild(heart);
 
         setTimeout(() => heart.remove(), 4000);
